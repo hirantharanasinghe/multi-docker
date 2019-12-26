@@ -3,23 +3,23 @@ services:
     - docker
 
 before_install:
-    - docker build -t multi-docker -f ./client/Dockerfile.dev ./client
+    - docker build -t hiranthadocker/multi-docker -f ./client/Dockerfile.dev ./client
 
 scripts:
-    - docker run -e CI=true multi-docker npm run test -- --coverage
+    - docker run -e CI=true hiranthadocker/multi-docker npm run test -- --coverage
 
 after_success: 
-    - docker build -t multi-client ./client
-    - docker build -t multi-nginx ./nginx 
-    - docker build -t multi-server ./server
-    - docker build -t multi-worker ./worker
+    - docker build -t hiranthadocker/multi-client ./client
+    - docker build -t hiranthadocker/multi-nginx ./nginx 
+    - docker build -t hiranthadocker/multi-server ./server
+    - docker build -t hiranthadocker/multi-worker ./worker
     # Docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     
     # Push to Docker Hub
-    - docker push multi-client
-    - docker push multi-nginx
-    - docker push multi-server
-    - docker push multi-worker
+    - docker push hiranthadocker/multi-client
+    - docker push hiranthadocker/multi-nginx
+    - docker push hiranthadocker/multi-server
+    - docker push hiranthadocker/multi-worker
 
 
