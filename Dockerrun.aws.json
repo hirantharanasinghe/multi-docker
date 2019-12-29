@@ -14,7 +14,7 @@
             "essential": false
         },
         {
-            "name": "nginx",
+            "name": "worker",
             "image": "hirantharanasinghe/multi-worker",
             "hostname": "worker",
             "essential": false
